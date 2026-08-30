@@ -56,3 +56,25 @@
 }
 @media(max-width:390px){.btn{font-size:10px;letter-spacing:.075em}.footer-links{gap:10px 18px}}
 @media(prefers-reduced-motion:reduce){.btn,.nav-cta,.menu-btn,.service-card a,.gallery-item,.float-wa,.footer-links a{transition:none!important}}
+
+/* Hero-only scroll-scrubbed exploded trimmer film */
+.hero{height:380vh;min-height:2600px;overflow:hidden;isolation:isolate;align-items:flex-start}.hero-copy{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;z-index:4}.scrub-stage{position:absolute;inset:0 0 auto;height:100vh;z-index:2;overflow:hidden;pointer-events:none;opacity:1;transform:translate3d(0,0,0);background:transparent}.scrub-visual{position:absolute;inset:0;display:grid;place-items:center;will-change:transform;transform:translate3d(0,0,0);transform-origin:50% 50%}.scrub-visual video{display:block;width:min(92vw,1500px);height:min(82vh,820px);object-fit:contain;background:transparent;transform:translate3d(0,0,0);will-change:contents}.scrub-glow{position:absolute;z-index:-1;left:50%;top:50%;width:min(58vw,820px);height:min(58vw,820px);border-radius:50%;background:radial-gradient(circle,rgba(224,177,80,.24),rgba(126,75,20,.06) 48%,transparent 72%);transform:translate3d(-50%,-50%,0);filter:blur(24px);will-change:transform,opacity}.scrub-loading{position:absolute;z-index:3;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;color:#b9ad98;text-transform:uppercase;letter-spacing:.16em;font-size:9px;background:#090908;transition:opacity .45s ease,visibility .45s}.scrub-loading span{width:36px;height:36px;border-radius:50%;border:1px solid rgba(216,181,109,.25);border-top-color:var(--gold);animation:scrubSpin .8s linear infinite}.scrub-stage.is-ready .scrub-loading{opacity:0;visibility:hidden}@keyframes scrubSpin{to{transform:rotate(360deg)}}
+@media(max-width:720px){.hero{height:300vh;min-height:2100px}.hero-copy{height:100vh;justify-content:flex-start;padding-top:110px}.scrub-visual{top:24vh;height:68vh}.scrub-visual video{width:112vw;height:62vh}.scrub-glow{top:59%;width:90vw;height:90vw;filter:none}.scrub-loading{justify-content:flex-end;padding-bottom:20vh}}
+@media(max-width:720px) and (orientation:landscape){.hero{height:280vh;min-height:1400px}.hero-copy{padding-top:82px}.scrub-visual{top:12vh;height:78vh}.scrub-visual video{height:74vh;width:78vw}}
+@media(prefers-reduced-motion:reduce){.hero{height:100vh!important;min-height:720px!important}.hero-copy{position:relative}.scrub-stage{height:100vh;opacity:.72}.scrub-visual{transform:none!important}.scrub-visual video{width:min(92vw,1200px)}.scrub-glow{opacity:.3!important}.scrub-loading span{animation:none}}
+
+/* A sticky in-flow stage is more reliable than pinning an absolutely positioned video. */
+.scrub-stage{position:sticky;top:0;align-self:flex-start;order:-1;flex:0 0 100vw;width:100vw;margin-left:-7vw;margin-right:-100vw;margin-top:-130px}
+@media(max-width:720px){.scrub-stage{margin-left:-22px;margin-top:-110px}}
+
+/* The source MP4 has a baked checkerboard; show a keyed transparent canvas instead. */
+.scrub-visual canvas{display:block;width:min(92vw,1500px);height:min(82vh,820px);object-fit:contain;background:transparent;transform:translate3d(0,0,0);image-rendering:auto}
+.scrub-visual video{position:absolute!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none}
+@media(max-width:720px){.scrub-visual canvas{width:112vw;height:62vh}}
+@media(max-width:720px) and (orientation:landscape){.scrub-visual canvas{height:74vh;width:78vw}}
+@media(prefers-reduced-motion:reduce){.scrub-visual canvas{width:min(92vw,1200px)}}
+
+@media(max-width:720px) and (orientation:portrait){.scrub-visual{top:45vh;height:55vh}}
+
+.hero{overflow:clip}
+.scrub-stage{transform:translate3d(0,0,0)}
